@@ -1,0 +1,125 @@
+/* SERVICES */
+.services {
+  background: var(--orange);
+  padding: 5rem 3rem;
+
+  &__main {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header h2 {
+    margin: 0;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    line-height: 0.95;
+    color: white;
+  }
+
+  &__title-white {
+    color: white;
+  }
+
+  &__title-black {
+    color: var(--black);
+  }
+
+  &__underline {
+    width: 4rem;
+    height: 4px;
+    background: white;
+    margin: 1.5rem 0 3rem;
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 640px;
+  }
+
+  &__item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: var(--charcoal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    app-icon-component {
+      width: 28px;
+      height: 28px;
+      color: var(--orange);
+
+    }
+  }
+
+  &__text {
+    h3 {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 1.1rem;
+      margin-bottom: 0.35rem;
+      color: white;
+    }
+
+    p {
+      margin: 0;
+      color: var(255,255,255,0.85);
+      line-height: 1.5;
+    }
+  }
+  &__visual-col {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__illustration-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 480px;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: var(--black);
+  }
+
+  &__illustration {
+    object-fit: contain;
+  }
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .services {
+    padding: 3.5rem 1.5rem;
+    &__main {
+      grid-template-columns: 1fr;
+    }
+
+    &__illustration-wrap {
+      height: 320px;
+      max-width: 100%;
+    }
+  }
+}

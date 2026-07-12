@@ -1,0 +1,33 @@
+<!-- SERVICES -->
+<section class="services">
+  <div class="services__main">
+    <div class="services__left">
+      <div class="services__header">
+        <h2><span class="services__title-white">Massage</span><br /><span class="services__title-black">Sportif</span></h2>
+        <div class="services__underline"></div>
+      </div>
+
+      <ul class="services__list">
+        @for (service of services(); track service.title) {
+          <li class="services__item">
+            <span class="services__icon">
+              <app-icon-component
+                [name]="service.icon">
+              </app-icon-component>
+            </span>
+            <div class="services__text">
+              <h3>{{ service.title }}</h3>
+              <p>{{ service.description }}</p>
+            </div>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="services__visual-col">
+      <div class="services__illustration-wrap">
+        <img class="services__illustration" ngSrc="/images/mmd_sport.jpg" alt="Séance de massage sportif" fill />
+      </div>
+    </div>
+  </div>
+</section>

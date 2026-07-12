@@ -1,0 +1,77 @@
+<!-- AMMA ASSIS ENTREPRISE -->
+<section class="corporate">
+  <div class="corporate__main">
+    <div class="corporate__left">
+      <div class="corporate__intro">
+        <h2>
+          <span class="corporate__title-orange">Massage</span><br />
+          <span class="corporate__title-black">Amma assis</span>
+        </h2>
+        <p class="corporate__banner">En entreprise</p>
+        <p class="corporate__tagline">Bien-être <span>•</span> Performance <span>•</span> Prévention</p>
+      </div>
+
+      <div class="corporate__benefits">
+        <p class="corporate__pill corporate__pill--orange">Les bienfaits</p>
+
+        <ul class="corporate__list">
+          @for (benefit of benefits(); track benefit.icon) {
+            <li class="corporate__list-item">
+              <span class="corporate__list-icon">
+                 <app-icon-component
+                   [name]="benefit.icon">
+                 </app-icon-component>
+              </span>
+              <span class="corporate__list-text">
+                {{ benefit.textBefore }}
+                <strong>{{ benefit.highlight }}</strong>
+                {{ benefit.textAfter }}
+                <strong>{{ benefit.highlight2 }}</strong>
+              </span>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="corporate__visual-col">
+      <div class="corporate__illustration-wrap">
+        <img class="corporate__illustration" ngSrc="/images/mmd_boss.jpg" alt="Illustration d'un massage Amma assis" fill />
+      </div>
+
+      <div class="corporate__price">
+        <p class="corporate__price-label">Tarif :</p>
+        <p class="corporate__price-amount">30€</p>
+        <p class="corporate__price-unit">/personne</p>
+        <p class="corporate__price-duration">20 à 30 min</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="corporate__reasons">
+    <p class="corporate__pill corporate__pill--black">Pourquoi proposer ce massage dans votre entreprise ?</p>
+
+    <div class="corporate__reasons-grid">
+      @for (reason of reasons(); track reason.icon) {
+        <div class="corporate__reason">
+          <span class="corporate__reason-icon">
+            <app-icon-component
+              [name]="reason.icon">
+            </app-icon-component>
+          </span>
+          <p class="corporate__reason-title">{{ reason.title }}<br /><span>{{ reason.highlight }}</span></p>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="corporate__note">
+    <span class="corporate__note-icon">
+      <app-icon-component
+        name="clock">
+      </app-icon-component>
+    </span>
+    <p>Intervention sur site</p>
+  </div>
+</section>
+

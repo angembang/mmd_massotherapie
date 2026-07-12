@@ -1,0 +1,257 @@
+/* AMMA ASSIS */
+.corporate {
+  background: var(--offwhite);
+  padding: 5rem 3rem;
+
+  h2 {
+    margin: 0;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5.5vw, 4rem);
+    line-height: 0.95;
+  }
+
+  &__title-orange { color: var(--orange); }
+  &__title-black { color: var(--black); }
+
+  &__banner {
+    display: inline-block;
+    background: var(--orange);
+    color: white;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    padding: 0.5rem 1.5rem;
+    border-radius: 999px;
+    margin: 1rem 0;
+  }
+
+  &__tagline {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: var(--black);
+
+    span { color: var(--orange); margin: 0 0.4em; }
+  }
+
+  &__main {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 4rem;
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__pill {
+    display: inline-block;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 999px;
+    margin-bottom: 2rem;
+
+    &--orange { background: var(--orange); color: white; }
+    &--black { background: var(--black); color: white; max-width: 480px; text-align: center; line-height: 1.4; }
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  &__list-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px dashed rgba(0,0,0,0.15);
+
+    &:last-child { border-bottom: none; }
+  }
+
+  &__list-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    color: var(--orange);
+
+    svg { width: 100%; height: 100%; }
+  }
+
+  &__list-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: var(--black);
+
+    ::ng-deep strong { color: var(--orange); font-weight: 700; }
+  }
+
+  &__visual-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  &__illustration-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 420px;
+    background-color: var(--orange);
+  }
+
+  &__illustration {
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+
+  }
+
+  &__price {
+    background: var(--orange);
+    border-radius: 50%;
+    aspect-ratio: 1;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 1.5rem;
+    transform: rotate(-4deg);
+  }
+
+  &__price-label {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin: 0;
+    color: var(--black);
+    background-color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 40%;
+  }
+
+  &__price-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    margin: 0;
+    line-height: 1;
+  }
+
+  &__price-unit {
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    margin: 0 0 0.5rem;
+  }
+
+  &__price-duration {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 0.85rem;
+    margin: 0;
+    color: var(--black);
+    background-color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 40%;
+  }
+
+  &__reasons {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  &__reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  &__reason {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  &__reason-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--orange);
+
+    svg { width: 100%; height: 100%; }
+  }
+
+  &__reason-title {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--black);
+    margin: 0;
+    line-height: 1.4;
+
+    span { color: var(--orange); font-weight: 800; }
+  }
+
+  &__note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-weight: 600;
+    color: var(--black);
+  }
+
+  &__note-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--orange);
+    svg { width: 100%; height: 100%; }
+  }
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .corporate {
+    padding: 3.5rem 1.5rem;
+
+    &__main {
+      grid-template-columns: 1fr;
+    }
+
+    &__price {
+      justify-self: center;
+      width: 200px;
+    }
+
+    &__reasons-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}

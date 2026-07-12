@@ -1,0 +1,17 @@
+:host {
+  display: block;
+  --orange: #E8570A;
+  --orange-light: #FF7A33;
+  --black: #141414;
+  --charcoal: #1C1C1C;
+  --offwhite: #F7F5F2;
+  --gray: #8A8A8A;
+  font-family: 'Inter', sans-serif;
+  color: var(--black);
+}
+
+h1, h2, h3 { margin: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

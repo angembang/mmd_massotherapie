@@ -1,0 +1,27 @@
+<main>
+
+  <app-hero-component
+    [smsLink]="homeFacade.smsLink"
+    [mailtoLink]="homeFacade.mailtoLink">
+  </app-hero-component>
+
+  <app-services-component
+    [services]="homeFacade.pageData.services">
+  </app-services-component>
+
+  <app-corporate-component
+    [benefits]="homeFacade.pageData.benefits"
+    [reasons]="homeFacade.pageData.reasons">
+  </app-corporate-component>
+
+  <app-contact-component
+    [phoneDisplay]="homeFacade.contactData.phoneDisplay"
+    [phoneLink]="homeFacade.contactData.phoneLink"
+    [instagramHandle]="homeFacade.contactData.instagramHandle"
+    [instagramLink]="homeFacade.contactData.instagramLink">
+  </app-contact-component>
+
+  <app-footer-component>
+  </app-footer-component>
+</main>
+

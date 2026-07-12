@@ -1,0 +1,10 @@
+services:
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: mmd-frontend
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
