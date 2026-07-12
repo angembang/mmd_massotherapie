@@ -13,10 +13,15 @@ describe('ContactComponent', () => {
     .compileComponents();
 
     fixture = TestBed.createComponent(ContactComponent);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
-  });
+    fixture.componentRef.setInput('phoneDisplay', '06 03 66 76 19');
+    fixture.componentRef.setInput('phoneLink', 'tel:+33603667619');
+    fixture.componentRef.setInput('instagramHandle', 'mmd.massotherapeute');
+    fixture.componentRef.setInput('instagramLink', 'https://instagram.com/mmd.massotherapeute');
 
+    fixture.detectChanges();
+
+    component = fixture.componentInstance;
+  });
   it('should create', () => {
     expect(component).toBeTruthy();
   });

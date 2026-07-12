@@ -13,8 +13,26 @@ describe('CorporateComponent', () => {
     .compileComponents();
 
     fixture = TestBed.createComponent(CorporateComponent);
+    fixture.componentRef.setInput('benefits', [
+      {
+        icon: 'stress',
+        textBefore: 'Réduction du ',
+        highlight: 'stress',
+        textAfter: ' et de la fatigue'
+      }
+    ]);
+
+    fixture.componentRef.setInput('reasons', [
+      {
+        icon: 'heart',
+        title: 'Bien-être',
+        highlight: 'des salariés'
+      }
+    ]);
+
+    fixture.detectChanges();
+
     component = fixture.componentInstance;
-    await fixture.whenStable();
   });
 
   it('should create', () => {

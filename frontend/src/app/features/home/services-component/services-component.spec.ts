@@ -13,8 +13,17 @@ describe('ServicesComponent', () => {
     .compileComponents();
 
     fixture = TestBed.createComponent(ServicesComponent);
+    fixture.componentRef.setInput('services', [
+      {
+        title: 'Préparation',
+        description: 'Prépare le corps avant l\'effort.',
+        icon: 'run'
+      }
+    ]);
+
+    fixture.detectChanges();
+
     component = fixture.componentInstance;
-    await fixture.whenStable();
   });
 
   it('should create', () => {

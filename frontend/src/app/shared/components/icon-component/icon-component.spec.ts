@@ -13,8 +13,14 @@ describe('IconComponent', () => {
     .compileComponents();
 
     fixture = TestBed.createComponent(IconComponent);
+    fixture.componentRef.setInput(
+      'name',
+      'heart'
+    );
+
+    fixture.detectChanges();
+
     component = fixture.componentInstance;
-    await fixture.whenStable();
   });
 
   it('should create', () => {
