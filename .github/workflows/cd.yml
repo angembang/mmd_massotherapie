@@ -1,0 +1,71 @@
+# Workflow name displayed in GitHub Actions interface
+name: CD - Deploy to VPS
+
+# Trigger the workflow on push events to the main branch
+on:
+  workflow_run:
+    workflows:
+      - "CI - MMD"
+    types:
+      - completed
+
+# Define the jobs executed by this workflow
+jobs:
+  deploy:
+    if: ${{ github.event.workflow_run.head_branch == 'main' &&
+      github.event.workflow_run.conclusion == 'success' }}
+    # Use the latest Ubuntu GitHub-hosted runner
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository code
+      # This downloads the project source code into the runner
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # The workflow that triggered the commit
+          ref: ${{ github.event.workflow_run.head_sha }}
+
+      # Step 2: Start SSH agent and load private key
+      # This allows GitHub Actions to authenticate securely with the VPS via SSH
+      - name: Start SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          # Private SSH key stored securely in GitHub Secrets
+          ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
+
+      # Step 3: Add the VPS host to known_hosts
+      # Prevents SSH from prompting for host verification (non-interactive environment)
+      - name: Add VPS to known hosts
+        run: |
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+
+      # Step 4: Ensure the deployment directory exists on the VPS
+      # If ~/app does not exist, it is created
+      - name: Prepare deployment directory
+        run: |
+          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "
+            mkdir -p ~/app
+          "
+
+      # Step 5: Synchronize project files to the VPS
+      # rsync efficiently transfers only changed files
+      # --delete ensures removed files locally are also removed remotely
+      # .git directory is excluded to avoid unnecessary transfer
+      - name: Sync project
+        run: |
+          rsync -avz --delete \
+            --exclude '.git' \
+            ./ ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:~/app/
+
+      # Step 7: Restart Docker containers on the VPS
+      # Stops running containers
+      # Rebuilds images if necessary
+      # Starts containers in detached mode
+      - name: Restart containers
+        run: |
+          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "
+            cd ~/app && \
+            docker compose down --remove-orphans &&
+            docker compose up -d --build
+          "
