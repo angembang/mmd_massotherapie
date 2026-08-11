@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BENEFITS, REASONS, SERVICES} from '../constants/home-data.constants';
+import {BENEFITS, MASSAGE_PRICES, REASONS, SERVICES} from '../constants/home-data.constants';
 import {BUSINESS} from '../constants/business.constants';
 
 @Injectable({
@@ -9,6 +9,7 @@ export class HomeFacade {
 
   readonly pageData = {
     services: SERVICES,
+    massagePrices: MASSAGE_PRICES,
     benefits: BENEFITS,
     reasons: REASONS
   };

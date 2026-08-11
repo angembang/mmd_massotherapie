@@ -1,6 +1,7 @@
-import {MassageServiceModel} from '../models/massage.service.model';
-import {BenefitModel} from '../models/benefit.model';
-import {ReasonModel} from '../models/reason.model';
+import { MassageServiceModel } from '../models/massage.service.model';
+import { BenefitModel } from '../models/benefit.model';
+import { ReasonModel } from '../models/reason.model';
+import { MassagePricesModel } from "../models/massage.prices.model";
 
 export const SERVICES: MassageServiceModel[] = [
   {
@@ -44,3 +45,14 @@ export const REASONS: ReasonModel[] = [
   { icon: 'growth', title: 'Motivation', highlight: '& QVT' },
   { icon: 'stars', title: 'Image positive', highlight: 'de l\'entreprise' }
 ];
+
+export const MASSAGE_PRICES: MassagePricesModel[] = [
+  { image: 'images/icons/icon_cupping.png', title: 'MASSAGE CUPPING', point: '•', firstText: 'Haut/bas du corps - 45 min : 60€', lastText: 'Corps complet - 1h10 : 90€' },
+  { image: 'images/icons/icon_muscle.png', title: 'MASSAGE SPORTIF + VENTOUSES CHAUDES', point: '•', firstText: 'Haut/bas du corps - 45 min : 60€', lastText: 'Corps complet - 1h10 : 90€' },
+  { image: 'images/icons/icon_drainage.png', title: 'DRAINAGE LYMPHATIQUE', point: '•', firstText: 'Corps complet : 80€' },
+  { image: 'images/icons/icon_therapeutique.png', title: 'MASSAGE THÉRAPEUTIQUE', point: '•', firstText: '45 min : 60€' },
+  { image: 'images/icons/icon_seated.png', title: 'MASSAGE AMMA ASSIS', point: '•', firstText: '20 à 30 min : 30€' },
+  { image: 'images/icons/icon_pressotherapie.png', title: 'BOTTES PRESSOTHÉRAPIE', point: '•', firstText: 'Une séance de 45 min : 30€' }
+];
+
+

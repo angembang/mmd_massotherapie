@@ -1,0 +1,48 @@
+<!-- MASSAGES Prices -->
+<div class="massage-prices">
+  <!-- GLOBAL TITLE -->
+  <div class="massage-prices__banner">
+    <h2>MASSAGE SPORTIF • BIEN-ÊTRE • TRAITEMENT DES DOULEURS</h2>
+  </div>
+
+  <div class="massage-prices__poster-container">
+    <!-- LEFT COLUMN : PRICES CARDS -->
+    <div class="massage-prices__cards-column">
+      @for (price of massagePrices(); track price.title) {
+        <div class="massage-prices__card">
+          <div class="massage-prices__icon">
+            <img [src]="price.image" [alt]="price.title" class="massage-prices__icon-img" />
+          </div>
+
+          <section class="massage-prices__content">
+            <h3>{{ price.title }}</h3>
+            <div class="massage-prices__details">
+              <p class="massage-prices__detail">
+                <span class="massage-prices__bullet">{{ price.point }}</span> {{ price.firstText }}
+              </p>
+              @if (price.lastText) {
+                <p class="massage-prices__detail">
+                  <span class="massage-prices__bullet">{{ price.point }}</span> {{ price.lastText }}
+                </p>
+              }
+            </div>
+          </section>
+        </div>
+      }
+    </div>
+
+    <!-- RIGHT COLUMN: MASSAGE VISUAL -->
+    <div class="massage-prices__visual-column">
+      <div class="massage-prices__visual-wrapper">
+        <div class="massage-prices__glow-overlay"></div>
+        <img
+          src="images/massage_price.jpg"
+          alt="Séance de massage sportif et bien-être"
+          class="massage-prices__visual-img"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,4 +1,4 @@
-import { Type } from'@angular/core'
+import { Type } from '@angular/core';
 
 import {
   LucidePersonStanding,
@@ -41,3 +41,5 @@ export const ICON_MAP: Record<string, Type<any>> = {
 
   clock: LucideClock3
 } as const;
+
+
