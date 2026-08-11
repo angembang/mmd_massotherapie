@@ -18,7 +18,7 @@ describe('ServicesComponent', () => {
         image: 'images/massage_price.jpg',
          point:'.',
          title: 'Massage cupping',
-         firstText: 'Haut/bas du corps - 45 min : 60€',
+         firstText: 'Haut/bas du corps - 45 min : 70€',
          lastText?: 'Corps complet - 1h10 : 90€'
       }
     ]);
