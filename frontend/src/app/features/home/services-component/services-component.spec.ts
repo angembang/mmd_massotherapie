@@ -15,9 +15,11 @@ describe('ServicesComponent', () => {
     fixture = TestBed.createComponent(ServicesComponent);
     fixture.componentRef.setInput('services', [
       {
-        title: 'Préparation',
-        description: 'Prépare le corps avant l\'effort.',
-        icon: 'run'
+        image: 'images/massage_price.jpg',
+         point:'.',
+         title: 'Massage cupping',
+         firstText: 'Haut/bas du corps - 45 min : 60€',
+         lastText?: 'Corps complet - 1h10 : 90€'
       }
     ]);
 

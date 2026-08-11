@@ -13,9 +13,18 @@ describe('MassagePricesComponent', () => {
     .compileComponents();
 
     fixture = TestBed.createComponent(MassagePricesComponent);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
-  });
+      fixture.componentRef.setInput('massagePrices', [
+        {
+          title: 'Préparation',
+          description: 'Prépare le corps avant l\'effort.',
+          icon: 'run'
+        }
+      ]);
+
+      fixture.detectChanges();
+
+      component = fixture.componentInstance;
+    });
 
   it('should create', () => {
     expect(component).toBeTruthy();
