@@ -1,5 +1,38 @@
 services:
 
+  mysql:
+    image: mysql:8.4.11
+    container_name: mmdmassotherapie-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend:
+    container_name: mmdmassotherapie-backend
+    build:
+      context: backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    env_file:
+      - .env
+    environment:
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}
+    restart: always
+    volumes:
+      - ./uploads:/uploads
+
   frontend:
     build:
       context: ./frontend
@@ -7,4 +40,8 @@ services:
     ports:
       - "127.0.0.1:3000:80"
     restart: unless-stopped
+
+
+volumes:
+  mysql_data:
 
