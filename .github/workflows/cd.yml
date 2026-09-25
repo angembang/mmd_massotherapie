@@ -56,7 +56,30 @@ jobs:
         run: |
           rsync -avz --delete \
             --exclude '.git' \
+            --exclude '.env' \
+            --exclude '.env.*' \
+            --exclude 'uploads/' \
+            --exclude 'docker-data/' \
+            --exclude 'mysql_data/' \
             ./ ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:~/app/
+
+      - name: Create environment file on VPS
+        run: |
+          cat > .env.deploy << 'EOF'
+          MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}
+          MYSQL_USER=${{ secrets.MYSQL_USER }}
+          MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}
+          MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}
+
+          SPRING_DATASOURCE_URL=${{ secrets.SPRING_DATASOURCE_URL }}
+          SPRING_DATASOURCE_USERNAME=${{ secrets.SPRING_DATASOURCE_USERNAME }}
+          SPRING_DATASOURCE_PASSWORD=${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+          SPRING_PROFILES_ACTIVE=${{ secrets.SPRING_PROFILES_ACTIVE }}
+          EOF
+
+          scp .env.deploy ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:~/app/.env
+          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "chmod 600 ~/app/.env"
+          rm -f .env.deploy
 
       # Step 7: Restart Docker containers on the VPS
       # Stops running containers
