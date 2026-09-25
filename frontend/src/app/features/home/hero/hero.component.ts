@@ -6,8 +6,8 @@ import {NgOptimizedImage} from "@angular/common";
     imports: [
         NgOptimizedImage
     ],
-  templateUrl: './hero-component.html',
-  styleUrl: './hero-component.scss',
+  templateUrl: './hero.component.html',
+  styleUrl: './hero.component.scss',
 })
 export class HeroComponent {
   smsLink = input.required<string>();

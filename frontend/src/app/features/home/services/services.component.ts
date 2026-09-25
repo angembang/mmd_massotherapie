@@ -9,8 +9,8 @@ import {IconComponent} from '../../../shared/components/icon-component/icon-comp
         NgOptimizedImage,
         IconComponent
     ],
-  templateUrl: './services-component.html',
-  styleUrl: './services-component.scss',
+  templateUrl: './services.component.html',
+  styleUrl: './services.component.scss',
 })
 export class ServicesComponent {
   services = input.required<MassageServiceModel[]>();

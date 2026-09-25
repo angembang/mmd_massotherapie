@@ -6,8 +6,8 @@ import {IconComponent} from '../../../shared/components/icon-component/icon-comp
   imports: [
     IconComponent
   ],
-  templateUrl: './contact-component.html',
-  styleUrl: './contact-component.scss',
+  templateUrl: './contact.component.html',
+  styleUrl: './contact.component.scss',
 })
 export class ContactComponent {
   phoneDisplay = input.required<string>();

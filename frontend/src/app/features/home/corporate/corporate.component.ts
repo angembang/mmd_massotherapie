@@ -10,8 +10,8 @@ import {IconComponent} from '../../../shared/components/icon-component/icon-comp
         NgOptimizedImage,
         IconComponent
     ],
-  templateUrl: './corporate-component.html',
-  styleUrl: './corporate-component.scss',
+  templateUrl: './corporate.component.html',
+  styleUrl: './corporate.component.scss',
 })
 export class CorporateComponent {
   benefits = input.required<BenefitModel[]>();
