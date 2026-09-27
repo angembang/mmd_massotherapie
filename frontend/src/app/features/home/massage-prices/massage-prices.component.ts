@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { MassagePricesModel } from '../../../models/massage.prices.model';
+import { Massage } from '../../../models/massage.model';
 
 @Component({
   selector: 'app-massage-prices-component',
@@ -8,5 +8,31 @@ import { MassagePricesModel } from '../../../models/massage.prices.model';
   styleUrl: './massage-prices.component.scss',
 })
 export class MassagePricesComponent {
-  massagePrices = input.required<MassagePricesModel[]>();
-}
+  massages = input.required<Massage[]>();
+
+    formatDuration(minutes: number): string {
+      if (minutes < 60) {
+        return `${minutes} min`;
+      }
+
+      const hours = Math.floor(minutes / 60);
+      const remainingMinutes = minutes % 60;
+
+      return remainingMinutes === 0
+        ? `${hours}h`
+        : `${hours}h${remainingMinutes}`;
+    }
+
+    formatBodyArea(bodyArea: string): string {
+      switch (bodyArea) {
+        case 'UPPER_OR_LOWER_BODY':
+          return 'Haut/bas du corps';
+
+        case 'FULL_BODY':
+          return 'Corps complet';
+
+        default:
+          return '';
+      }
+    }
+  }

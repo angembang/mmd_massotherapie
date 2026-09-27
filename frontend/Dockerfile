@@ -15,12 +15,12 @@ RUN npm ci
 COPY . .
 
 # Build Angular (production)
-RUN npm run build
+RUN npm run build -- --configuration development
 
 # ===============================
 # Step 2 : Nginx server
 # ===============================
-FROM nginx:alpine
+FROM nginxinc/nginx-unprivileged:alpine
 
 # Remove default nginx config
 RUN rm /etc/nginx/conf.d/default.conf
@@ -32,6 +32,6 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/dist/frontend /usr/share/nginx/html
 
 # Exposer le port
-EXPOSE 80
+EXPOSE 8080
 
 CMD ["nginx", "-g", "daemon off;"]

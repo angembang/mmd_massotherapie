@@ -1,15 +1,23 @@
-import {Injectable} from '@angular/core';
-import {BENEFITS, MASSAGE_PRICES, REASONS, SERVICES} from '../constants/home-data.constants';
+import {inject, Injectable} from '@angular/core';
+import {BENEFITS, REASONS, SERVICES} from '../constants/home-data.constants';
 import {BUSINESS} from '../constants/business.constants';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { MassageService } from '../services/massage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeFacade {
 
+   private readonly massageService = inject(MassageService);
+
+    readonly massages = toSignal(
+      this.massageService.getMassages(),
+      { initialValue: [] }
+    );
+
   readonly pageData = {
     services: SERVICES,
-    massagePrices: MASSAGE_PRICES,
     benefits: BENEFITS,
     reasons: REASONS
   };

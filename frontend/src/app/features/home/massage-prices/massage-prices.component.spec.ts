@@ -13,13 +13,29 @@ describe('MassagePricesComponent', () => {
     .compileComponents();
 
     fixture = TestBed.createComponent(MassagePricesComponent);
-      fixture.componentRef.setInput('massagePrices', [
-        {
-          title: 'Préparation',
-          description: 'Prépare le corps avant l\'effort.',
-          icon: 'run'
-        }
-      ]);
+      fixture.componentRef.setInput('massages', [
+                                       {
+                                         id: 1,
+                                         name: 'Massage cupping',
+                                         slug: 'massage-cupping',
+                                         icon: 'images/icons/icon_cupping.png',
+                                         image: 'images/massage_price.jpg',
+                                         options: [
+                                           {
+                                             id: 1,
+                                             durationMinutes: 45,
+                                             bodyArea: 'UPPER_OR_LOWER_BODY',
+                                             priceCents: 6000
+                                           },
+                                           {
+                                             id: 2,
+                                             durationMinutes: 70,
+                                             bodyArea: 'FULL_BODY',
+                                             priceCents: 9000
+                                           }
+                                         ]
+                                       }
+                                     ]);
 
       fixture.detectChanges();
 

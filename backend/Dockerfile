@@ -33,8 +33,19 @@ FROM eclipse-temurin:21-jre
 
 WORKDIR /app
 
-# Copier le JAR généré depuis l'étape build
-COPY --from=build /app/build/libs/*.jar app.jar
+# Créer un utilisateur système non-root dédié à l'application
+RUN groupadd --system appgroup \
+    && useradd --system \
+        --gid appgroup \
+        --no-create-home \
+        --shell /usr/sbin/nologin \
+        appuser
+
+# Copier le JAR généré depuis l'étape build avec les bonnes permissions
+COPY --from=build --chown=appuser:appgroup /app/build/libs/*.jar app.jar
+
+# Exécuter Spring Boot avec un utilisateur non-root
+USER appuser:appgroup
 
 # Exposer le port Spring Boot
 EXPOSE 8080
