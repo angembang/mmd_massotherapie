@@ -1,0 +1,36 @@
+<main class="admin-register">
+  <form class="admin-register__panel" [formGroup]="registerForm" (ngSubmit)="submit()">
+    <h1>Créer un accès admin</h1>
+    <p>Le code d’invitation est requis et n’est pas conserve dans le navigateur.</p>
+
+    @if (error(); as message) {
+      <p class="admin-register__error">{{ message }}</p>
+    }
+
+    <label>
+      Nom complet
+      <input type="text" formControlName="fullName" autocomplete="name" />
+    </label>
+
+    <label>
+      Email
+      <input type="email" formControlName="email" autocomplete="username" />
+    </label>
+
+    <label>
+      Mot de passe
+      <input type="password" formControlName="password" autocomplete="new-password" />
+    </label>
+
+    <label>
+      Code d’invitation
+      <input type="password" formControlName="invitationCode" autocomplete="off" />
+    </label>
+
+    <button type="submit" [disabled]="loading()">
+      {{ loading() ? 'Creation...' : 'Creer le compte' }}
+    </button>
+
+    <a class="admin-register__link" routerLink="/admin">Retour connexion</a>
+  </form>
+</main>

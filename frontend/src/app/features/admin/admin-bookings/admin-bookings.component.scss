@@ -1,0 +1,144 @@
+.admin-bookings {
+  background: #f4f1ec;
+  color: #222;
+  min-height: 100vh;
+  padding: 1.5rem;
+
+  &__header,
+  &__filters,
+  &__layout,
+  &__notice {
+    margin-inline: auto;
+    max-width: 1180px;
+  }
+
+  &__header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+
+    h1 {
+      color: #e8570a;
+      margin: 0;
+    }
+  }
+
+  &__filters {
+    background: #fff;
+    border: 1px solid #ddd3c7;
+    border-radius: 8px;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
+
+  label,
+  form {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  input,
+  select,
+  textarea {
+    border: 1px solid #d8cfc3;
+    border-radius: 6px;
+    font: inherit;
+    padding: 0.75rem;
+  }
+
+  button {
+    background: #e8570a;
+    border: 0;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 800;
+    padding: 0.8rem 1rem;
+  }
+
+  &__layout {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: minmax(280px, 0.95fr) minmax(360px, 1.25fr);
+  }
+
+  &__list,
+  &__details {
+    background: #fff;
+    border: 1px solid #ddd3c7;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  &__item {
+    background: #fff;
+    border: 1px solid #e7ddd1;
+    color: #222;
+    display: grid;
+    gap: 0.25rem;
+    margin-bottom: 0.75rem;
+    text-align: left;
+    width: 100%;
+
+    span,
+    small {
+      color: #6b6259;
+    }
+  }
+
+  &__details {
+    display: grid;
+    gap: 1rem;
+  }
+
+  dl {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+
+    dt {
+      color: #6b6259;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    dd {
+      margin: 0.2rem 0 0;
+    }
+  }
+
+  &__danger {
+    background: #b3261e;
+  }
+
+  &__notice {
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+
+    &--success {
+      background: #e8f7eb;
+      border: 1px solid #9bd2a5;
+    }
+
+    &--error {
+      background: #fff0ee;
+      border: 1px solid #f0a49a;
+    }
+  }
+}
+
+@media (max-width: 860px) {
+  .admin-bookings {
+    &__filters,
+    &__layout {
+      grid-template-columns: 1fr;
+    }
+  }
+}

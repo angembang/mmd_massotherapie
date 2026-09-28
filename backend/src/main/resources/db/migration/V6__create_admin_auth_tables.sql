@@ -1,0 +1,16 @@
+CREATE TABLE admin_user (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(150) NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    full_name VARCHAR(150) NOT NULL,
+    role VARCHAR(50) NOT NULL DEFAULT 'ROLE_ADMIN',
+    active BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT uk_admin_user_email
+        UNIQUE (email),
+
+    CONSTRAINT chk_admin_user_role
+        CHECK (role IN ('ROLE_ADMIN'))
+);
