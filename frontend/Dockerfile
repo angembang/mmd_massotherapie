@@ -15,7 +15,8 @@ RUN npm ci
 COPY . .
 
 # Build Angular (production)
-RUN npm run build
+ARG BUILD_CONFIGURATION=production
+RUN npm run build  -- --configuration ${BUILD_CONFIGURATION}
 
 # ===============================
 # Step 2 : Nginx server

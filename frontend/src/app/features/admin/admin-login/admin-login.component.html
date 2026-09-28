@@ -1,0 +1,26 @@
+<main class="admin-login">
+  <form class="admin-login__panel" [formGroup]="loginForm" (ngSubmit)="submit()">
+    <h1>Administration</h1>
+    <p>Connectez-vous pour suivre et traiter les rendez-vous.</p>
+
+    @if (error(); as message) {
+      <p class="admin-login__error">{{ message }}</p>
+    }
+
+    <label>
+      Email
+      <input type="email" formControlName="email" autocomplete="username" />
+    </label>
+
+    <label>
+      Mot de passe
+      <input type="password" formControlName="password" autocomplete="current-password" />
+    </label>
+
+    <button type="submit" [disabled]="loading()">
+      {{ loading() ? 'Connexion...' : 'Se connecter' }}
+    </button>
+
+    <a class="admin-login__link" routerLink="/admin/register">Creer un acces administrateur</a>
+  </form>
+</main>

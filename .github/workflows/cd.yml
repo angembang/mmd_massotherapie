@@ -78,6 +78,8 @@ jobs:
           
           JWT_SECRET=${{ secrets.JWT_SECRET }}
           JWT_EXPIRATION=${{ secrets.JWT_EXPIRATION }}
+          
+          ADMIN_REGISTRATION_INVITATION_CODE=${{ secrets.ADMIN_REGISTRATION_INVITATION_CODE }}
           EOF
 
           scp .env.deploy ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:~/app/.env

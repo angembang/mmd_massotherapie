@@ -37,6 +37,6 @@ public class MassageDAO implements IDAOMassage {
 
     @Override
     public Optional<MassageOption> findActiveOptionById(Long optionId) {
-        return massageOptionRepository.findByIdAndActiveTrue(optionId);
+        return massageOptionRepository.findByIdAndActiveTrueAndMassageActiveTrue(optionId);
     }
 }
