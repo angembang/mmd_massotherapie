@@ -3,7 +3,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { Observable, tap, map } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { AuthResponse, LoginRequest, RegisterRequest } from '../models/auth.model';
-import { LogicResult } from '../models/booking.model';
+import { LogicResult } from '../models/logic-result.model';
 
 const ADMIN_TOKEN_KEY = 'mmd_admin_access_token';
 const ADMIN_USER_KEY = 'mmd_admin_user';
