@@ -95,18 +95,11 @@ h1 {
       transform: translateY(-2px);
     }
 
-    &--sms {
+    &--booking {
       background: var(--black);
       color: white;
 
       &:hover { background: var(--charcoal); }
-    }
-
-    &--email {
-      background: white;
-      color: var(--black);
-
-      &:hover { background: rgba(255,255,255,0.85); }
     }
   }
 

@@ -1,16 +1,15 @@
-import {Component, input} from '@angular/core';
+import {Component} from '@angular/core';
 import {NgOptimizedImage} from "@angular/common";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-hero-component',
     imports: [
-        NgOptimizedImage
+        NgOptimizedImage,
+        RouterLink
     ],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss',
 })
 export class HeroComponent {
-  smsLink = input.required<string>();
-  mailtoLink = input.required<string>();
-
 }

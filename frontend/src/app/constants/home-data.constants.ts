@@ -1,7 +1,6 @@
 import { MassageServiceModel } from '../models/massage.service.model';
 import { BenefitModel } from '../models/benefit.model';
 import { ReasonModel } from '../models/reason.model';
-import { MassagePricesModel } from "../models/massage.prices.model";
 
 export const SERVICES: MassageServiceModel[] = [
   {

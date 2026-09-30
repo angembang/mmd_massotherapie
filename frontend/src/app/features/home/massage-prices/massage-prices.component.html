@@ -49,6 +49,16 @@
 
           </div>
 
+          @if (massage.options.length > 0) {
+          <a
+            class="massage-prices__booking-link"
+            routerLink="/booking"
+            [queryParams]="{ optionId: massage.options[0].id }"
+          >
+            Réserver
+          </a>
+          }
+
         </section>
 
       </div>

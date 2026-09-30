@@ -1,0 +1,106 @@
+<main class="booking-page">
+  <section class="booking-page__header">
+    <a routerLink="/" class="booking-page__back">Retour</a>
+    <h1>Reserver un rendez-vous</h1>
+  </section>
+
+  @if (success(); as result) {
+    <section class="booking-page__notice booking-page__notice--success">
+      <h2>Rendez-vous confirmé</h2>
+      <p>
+        Votre rendez-vous est confirmé le
+        {{ result.booking.appointmentDate }} à {{ result.booking.startTime }}.
+      </p>
+      @if (result.booking.customerEmail) {
+        <p>Un email de confirmation vient d'être envoyé à {{ result.booking.customerEmail }}.</p>
+      } @else {
+        <p>Aucun email n'a été renseigné. Conservez ce lien pour gérer votre rendez-vous.</p>
+      }
+      <a [href]="result.managementUrl" rel="noreferrer">Gérer mon rendez-vous</a>
+    </section>
+  }
+
+  @if (error(); as message) {
+    <p class="booking-page__notice booking-page__notice--error">{{ message }}</p>
+  }
+
+  <form class="booking-page__form" [formGroup]="bookingForm" (ngSubmit)="submit()">
+    <section class="booking-page__section">
+      <h2>Prestation</h2>
+
+      <label>
+        Massage
+        <select formControlName="massageId">
+          <option [ngValue]="0">Choisir un massage</option>
+          @for (massage of massages(); track massage.id) {
+            <option [ngValue]="massage.id">{{ massage.name }}</option>
+          }
+        </select>
+      </label>
+
+      <label>
+        Format
+        <select formControlName="massageOptionId">
+          <option [ngValue]="0">Choisir un format</option>
+          @for (option of selectedOptions(); track option.id) {
+            <option [ngValue]="option.id">{{ formatOption(option) }}</option>
+          }
+        </select>
+      </label>
+    </section>
+
+    <section class="booking-page__section">
+      <h2>Creneau</h2>
+
+      <label>
+        Date
+        <input type="date" formControlName="appointmentDate" />
+      </label>
+
+      <div class="booking-page__slots" role="radiogroup" aria-label="Creneaux disponibles">
+        @if (loadingSlots()) {
+          <p>Chargement des creneaux...</p>
+        } @else if (slots().length === 0 && bookingForm.controls.appointmentDate.value) {
+          <p>Aucun creneau disponible pour cette date.</p>
+        }
+
+        @for (slot of slots(); track slot.startTime) {
+          <label class="booking-page__slot">
+            <input type="radio" formControlName="startTime" [value]="slot.startTime" />
+            <span>{{ slot.startTime }} - {{ slot.endTime }}</span>
+          </label>
+        }
+      </div>
+    </section>
+
+    <section class="booking-page__section">
+      <h2>Coordonnees</h2>
+
+      <label>
+        Nom
+        <input type="text" formControlName="customerName" autocomplete="name" />
+      </label>
+
+      <div class="booking-page__grid">
+        <label>
+          Email
+          <input type="email" formControlName="customerEmail" autocomplete="email" />
+        </label>
+
+        <label>
+          Telephone
+          <input type="tel" formControlName="customerPhone" autocomplete="tel" />
+        </label>
+      </div>
+
+      <label>
+        Message
+        <textarea rows="4" formControlName="customerMessage"></textarea>
+      </label>
+    </section>
+
+    <button type="submit" [disabled]="submitting()">
+      {{ submitting() ? 'Confirmation...' : 'Confirmer le rendez-vous' }}
+    </button>
+  </form>
+</main>

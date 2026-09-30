@@ -80,6 +80,26 @@ jobs:
           JWT_EXPIRATION=${{ secrets.JWT_EXPIRATION }}
           
           ADMIN_REGISTRATION_INVITATION_CODE=${{ secrets.ADMIN_REGISTRATION_INVITATION_CODE }}
+          
+          BOOKING_PUBLIC_TOKEN_SECRET=${{ secrets.BOOKING_PUBLIC_TOKEN_SECRET }}
+          BOOKING_PUBLIC_TOKEN_EXPIRATION_DAYS=${{ secrets.BOOKING_PUBLIC_TOKEN_EXPIRATION_DAYS }}
+          BOOKING_MANAGEMENT_BASE_URL=${{ secrets.BOOKING_MANAGEMENT_BASE_URL }}
+          BOOKING_SLOT_STEP_MINUTES=${{ secrets.BOOKING_SLOT_STEP_MINUTES }}
+          
+          MAIL_ENABLED=${{ secrets.MAIL_ENABLED }}
+          MAIL_FROM=${{ secrets.MAIL_FROM }}
+          MAIL_REPLY_TO=${{ secrets.MAIL_REPLY_TO }}
+          MAIL_HOST=${{ secrets.MAIL_HOST }}
+          MAIL_PORT=${{ secrets.MAIL_PORT }}
+          MAIL_USERNAME=${{ secrets.MAIL_USERNAME }}
+          MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}
+          MAIL_SMTP_AUTH=${{ secrets.MAIL_SMTP_AUTH }}
+          MAIL_STARTTLS_ENABLE=${{ secrets.MAIL_STARTTLS_ENABLE }}
+          MAIL_STARTTLS_REQUIRED=${{ secrets.MAIL_STARTTLS_REQUIRED }}
+          MAIL_SSL_ENABLE=${{ secrets.MAIL_SSL_ENABLE }}
+          MAIL_CONNECTION_TIMEOUT=${{ secrets.MAIL_CONNECTION_TIMEOUT }}
+          MAIL_TIMEOUT=${{ secrets.MAIL_TIMEOUT }}
+          MAIL_WRITE_TIMEOUT=${{ secrets.MAIL_WRITE_TIMEOUT }}
           EOF
 
           scp .env.deploy ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:~/app/.env

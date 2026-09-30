@@ -1,9 +1,10 @@
 import { Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Massage } from '../../../models/massage.model';
 
 @Component({
   selector: 'app-massage-prices-component',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './massage-prices.component.html',
   styleUrl: './massage-prices.component.scss',
 })

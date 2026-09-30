@@ -1,0 +1,76 @@
+<main class="booking-manage">
+  <section class="booking-manage__header">
+    <a routerLink="/" class="booking-manage__back">Retour</a>
+    <h1>Gérer mon rendez-vous</h1>
+  </section>
+
+  @if (loading()) {
+    <p class="booking-manage__panel">Chargement...</p>
+  }
+
+  @if (error(); as errorMessage) {
+    <p class="booking-manage__notice booking-manage__notice--error">{{ errorMessage }}</p>
+  }
+
+  @if (message(); as successMessage) {
+    <p class="booking-manage__notice booking-manage__notice--success">{{ successMessage }}</p>
+  }
+
+  @if (booking(); as item) {
+    <section class="booking-manage__panel">
+      <h2>{{ item.massageName }}</h2>
+      <dl>
+        <div>
+          <dt>Date</dt>
+          <dd>{{ item.appointmentDate }}</dd>
+        </div>
+        <div>
+          <dt>Horaire</dt>
+          <dd>{{ item.startTime }} - {{ item.endTime }}</dd>
+        </div>
+        <div>
+          <dt>Statut</dt>
+          <dd>{{ item.status }}</dd>
+        </div>
+      </dl>
+    </section>
+
+    @if (item.status === 'CONFIRMED') {
+      <section class="booking-manage__panel">
+        <h2>Modifier le créneau</h2>
+        <form [formGroup]="rescheduleForm" (ngSubmit)="reschedule()">
+          <label>
+            Nouvelle date
+            <input type="date" formControlName="appointmentDate" />
+          </label>
+
+          <div class="booking-manage__slots">
+            @if (loadingSlots()) {
+              <p>Chargement des créneaux...</p>
+            }
+
+            @for (slot of slots(); track slot.startTime) {
+              <label>
+                <input type="radio" formControlName="startTime" [value]="slot.startTime" />
+                <span>{{ slot.startTime }} - {{ slot.endTime }}</span>
+              </label>
+            }
+          </div>
+
+          <button type="submit" [disabled]="saving()">Modifier</button>
+        </form>
+      </section>
+
+      <section class="booking-manage__panel">
+        <h2>Annuler le rendez-vous</h2>
+        <form [formGroup]="cancelForm" (ngSubmit)="cancel()">
+          <label>
+            Motif
+            <textarea rows="3" formControlName="reason"></textarea>
+          </label>
+          <button class="booking-manage__danger" type="submit" [disabled]="saving()">Annuler</button>
+        </form>
+      </section>
+    }
+  }
+</main>
