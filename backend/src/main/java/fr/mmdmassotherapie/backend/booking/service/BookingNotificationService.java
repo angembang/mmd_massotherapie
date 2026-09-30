@@ -41,7 +41,7 @@ public class BookingNotificationService {
         String body = """
                 Bonjour %s,
 
-                Votre rendez-vous est confirme.
+                Votre rendez-vous est confirmé.
 
                 Prestation : %s
                 Date : %s
@@ -71,7 +71,7 @@ public class BookingNotificationService {
         String body = """
                 Bonjour %s,
 
-                Votre rendez-vous du %s a %s a bien ete annule.
+                Votre rendez-vous du %s a %s a bien été annulé.
                 """.formatted(
                 booking.getCustomerName(),
                 booking.getAppointmentDate(),
@@ -91,10 +91,10 @@ public class BookingNotificationService {
         String body = """
                 Bonjour %s,
 
-                Votre rendez-vous du %s a %s a ete annule.
+                Votre rendez-vous du %s a %s a été annulé.
                 %s
 
-                Merci de choisir un autre creneau si possible.
+                Merci de choisir un autre créneau si possible.
                 """.formatted(
                 booking.getCustomerName(),
                 booking.getAppointmentDate(),
@@ -115,7 +115,7 @@ public class BookingNotificationService {
         String body = """
                 Bonjour %s,
 
-                Votre rendez-vous a ete modifie.
+                Votre rendez-vous a été modifié.
 
                 Prestation : %s
                 Nouvelle date : %s

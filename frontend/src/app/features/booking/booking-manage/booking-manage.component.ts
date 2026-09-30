@@ -58,7 +58,7 @@ export class BookingManageComponent {
       .subscribe({
         next: (response) => {
           this.booking.set(response.booking);
-          this.message.set(this.notificationMessage(response.booking, 'Votre rendez-vous a ete modifie.'));
+          this.message.set(this.notificationMessage(response.booking, 'Votre rendez-vous a été modifié.'));
           this.rescheduleForm.reset({ appointmentDate: '', startTime: '' });
           this.slots.set([]);
         },
@@ -79,9 +79,9 @@ export class BookingManageComponent {
       .subscribe({
         next: (booking) => {
           this.booking.set(booking);
-          this.message.set(this.notificationMessage(booking, 'Votre rendez-vous a ete annule.'));
+          this.message.set(this.notificationMessage(booking, 'Votre rendez-vous a été annulé.'));
         },
-        error: () => this.error.set('Impossible d annuler ce rendez-vous.'),
+        error: () => this.error.set("Impossible d'annuler ce rendez-vous."),
       });
   }
 
@@ -116,7 +116,7 @@ export class BookingManageComponent {
       .pipe(finalize(() => this.loadingSlots.set(false)))
       .subscribe({
         next: (slots) => this.slots.set(slots),
-        error: () => this.error.set('Impossible de charger les creneaux disponibles.'),
+        error: () => this.error.set('Impossible de charger les créneaux disponibles.'),
       });
   }
 
