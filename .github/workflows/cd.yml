@@ -112,8 +112,11 @@ jobs:
       # Starts containers in detached mode
       - name: Restart containers
         run: |
-          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "
-            cd ~/app && \
-            docker compose down --remove-orphans &&
-            docker compose up -d --build
-          "
+          ssh \
+            -o ServerAliveInterval=30 \
+            -o ServerAliveCountMax=10 \
+            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "
+              cd ~/app && \
+              docker compose down --remove-orphans &&
+              docker compose up -d --build
+            "
