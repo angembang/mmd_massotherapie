@@ -40,7 +40,7 @@ services:
         BUILD_CONFIGURATION: ${ANGULAR_BUILD_CONFIGURATION:-production}
     container_name: mmd-frontend
     ports:
-      - "127.0.0.1:3000:8080"
+      - "127.0.0.1:3000:80"
     restart: unless-stopped
 
 
