@@ -71,7 +71,7 @@ public class BookingNotificationService {
         String body = """
                 Bonjour %s,
 
-                Votre rendez-vous du %s a %s a bien été annulé.
+                Votre rendez-vous du %s à %s a bien été annulé.
                 """.formatted(
                 booking.getCustomerName(),
                 booking.getAppointmentDate(),
@@ -91,7 +91,7 @@ public class BookingNotificationService {
         String body = """
                 Bonjour %s,
 
-                Votre rendez-vous du %s a %s a été annulé.
+                Votre rendez-vous du %s à %s a été annulé.
                 %s
 
                 Merci de choisir un autre créneau si possible.
