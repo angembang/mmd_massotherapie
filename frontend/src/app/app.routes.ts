@@ -41,5 +41,13 @@ export const routes: Routes = [
         (component) => component.AdminRegisterComponent,
       ),
   },
+  {
+    path: 'rgpd',
+    title: 'Politique de confidentialité | MMD Massothérapie',
+    loadComponent: () =>
+      import('./features/rgpd/rgpd.component').then(
+        (component) => component.RgpdComponent
+      ),
+  },
   { path: '**', redirectTo: '' }
 ];

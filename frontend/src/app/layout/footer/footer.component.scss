@@ -13,4 +13,28 @@
     font-size: 0.75rem;
     margin: 0;
   }
+
+  .footer {
+    &__legal {
+      margin-top: 1rem;
+
+      a {
+        color: var(--offwhite);
+        font-size: 0.85rem;
+        font-family: 'Inter', sans-serif;
+        text-decoration: none;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: var(--orange-light);
+          text-decoration: underline;
+        }
+
+        &:focus-visible {
+          outline: 2px solid var(--orange-light);
+          outline-offset: 4px;
+        }
+      }
+    }
+  }
 }

@@ -94,10 +94,29 @@
       </div>
 
       <label>
-        Message
-        <textarea rows="4" formControlName="customerMessage"></textarea>
+        Message (facultatif)
+        <textarea
+          rows="4"
+          formControlName="customerMessage"
+          placeholder="Une précision concernant votre rendez-vous (sans information médicale)"
+        ></textarea>
       </label>
     </section>
+
+    <p class="booking-page__privacy">
+      Les informations renseignées sont utilisées pour organiser
+      votre rendez-vous et vous contacter si nécessaire.
+
+      Consultez notre
+      <a
+        href="/rgpd"
+        target="_blank"
+        rel="noopener noreferrer">
+        politique de confidentialité
+      </a>
+      pour connaître les modalités de traitement de vos données
+      et vos droits.
+    </p>
 
     <button type="submit" [disabled]="submitting()">
       {{ submitting() ? 'Confirmation...' : 'Confirmer le rendez-vous' }}
