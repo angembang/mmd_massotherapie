@@ -1,6 +1,9 @@
 package fr.mmdmassotherapie.backend.massage;
 
 import fr.mmdmassotherapie.backend.massage.dao.IDAOMassage;
+import fr.mmdmassotherapie.backend.massage.dto.MassageDetailResponse;
+import fr.mmdmassotherapie.backend.massage.dto.MassageOptionResponse;
+import fr.mmdmassotherapie.backend.massage.dto.MassageResponse;
 import fr.mmdmassotherapie.backend.massage.model.*;
 import org.springframework.stereotype.Service;
 

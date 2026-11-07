@@ -1,7 +1,7 @@
 package fr.mmdmassotherapie.backend.massage;
 
-import fr.mmdmassotherapie.backend.massage.model.MassageDetailResponse;
-import fr.mmdmassotherapie.backend.massage.model.MassageResponse;
+import fr.mmdmassotherapie.backend.massage.dto.MassageDetailResponse;
+import fr.mmdmassotherapie.backend.massage.dto.MassageResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

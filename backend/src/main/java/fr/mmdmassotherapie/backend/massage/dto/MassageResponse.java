@@ -1,4 +1,4 @@
-package fr.mmdmassotherapie.backend.massage.model;
+package fr.mmdmassotherapie.backend.massage.dto;
 
 import java.util.List;
 

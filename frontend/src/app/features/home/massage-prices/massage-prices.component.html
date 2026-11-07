@@ -44,20 +44,35 @@
               {{ option.priceCents / 100 }}€
 
             </p>
-
             }
 
           </div>
 
-          @if (massage.options.length > 0) {
-          <a
-            class="massage-prices__booking-link"
-            routerLink="/booking"
-            [queryParams]="{ optionId: massage.options[0].id }"
-          >
-            Réserver
-          </a>
-          }
+          <div class="massage-prices__actions">
+            <button
+              type="button"
+              class="massage-prices__detail-link"
+              [disabled]="detailsLoading()"
+              (click)="openDetails(massage)"
+            >
+              {{ detailsLoading() ? 'Chargement...' : 'Détails' }}
+            </button>
+
+            @if (massage.options.length > 0) {
+            <a
+              class="massage-prices__booking-link"
+              routerLink="/booking"
+              [queryParams]="{ optionId: massage.options[0].id }"
+            >
+              Réserver
+            </a>
+            }
+            @if (detailsError()) {
+            <p role="alert" class="massage-prices__error">
+              {{ detailsError() }}
+            </p>
+            }
+          </div>
 
         </section>
 
@@ -82,3 +97,62 @@
 
   </div>
 </div>
+
+
+<!-- Massage details modal -->
+<dialog
+  #detailsDialog
+  class="massage-modal"
+  aria-labelledby="massage-modal-title"
+  aria-describedby="massage-modal-description"
+  (close)="onDialogClose()">
+
+  @if (selectedMassage(); as massage) {
+
+  <button
+    type="button"
+    class="massage-modal__close"
+    aria-label="Fermer les détails du massage"
+    (click)="closeDetails()">
+    &times;
+  </button>
+
+  <h2 id="massage-modal-title">
+    {{ massage.name }}
+  </h2>
+
+  <div
+    id="massage-modal-description"
+    class="massage-modal__description">
+
+    @for (section of descriptionSections(); track $index) {
+      <section class="massage-modal__section">
+
+        @if (section.title) {
+          <h3 class="massage-modal__section-title">
+            {{ section.title }}
+          </h3>
+        }
+
+        @for (paragraph of section.paragraphs; track $index) {
+          <p class="massage-modal__paragraph">
+            {{ paragraph }}
+          </p>
+        }
+
+      </section>
+    }
+  </div>
+
+  @if (massage.options.length > 0) {
+  <a
+    class="massage-modal__booking"
+    routerLink="/booking"
+    [queryParams]="{ optionId: massage.options[0].id }"
+    (click)="closeDetails()">
+    Réserver ce massage
+  </a>
+  }
+
+  }
+</dialog>

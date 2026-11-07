@@ -1,6 +1,9 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ElementRef, effect, signal, viewChild, DestroyRef, inject,  computed, } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Massage } from '../../../models/massage.model';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Subscription } from 'rxjs';
+import { MassageService } from '../../../services/massage.service';
+import { Massage, MassageDetail, MassageDescriptionSection } from '../../../models/massage.model';
 
 @Component({
   selector: 'app-massage-prices-component',
@@ -9,31 +12,135 @@ import { Massage } from '../../../models/massage.model';
   styleUrl: './massage-prices.component.scss',
 })
 export class MassagePricesComponent {
-  massages = input.required<Massage[]>();
+  readonly massages = input.required<Massage[]>();
 
-    formatDuration(minutes: number): string {
-      if (minutes < 60) {
-        return `${minutes} min`;
+  readonly selectedMassage = signal<MassageDetail | null>(null);
+
+  readonly descriptionSections = computed(() => {
+    const description = this.selectedMassage()?.description ?? '';
+    return this.parseDescription(description);
+  });
+
+  readonly detailsLoading = signal(false);
+  readonly detailsError = signal<string | null>(null);
+
+  private readonly massageService = inject(MassageService);
+  private readonly destroyRef = inject(DestroyRef);
+
+  private detailsSubscription?: Subscription;
+
+  private readonly detailsDialog =
+    viewChild<ElementRef<HTMLDialogElement>>('detailsDialog');
+
+  constructor() {
+    effect(() => {
+      const dialog = this.detailsDialog()?.nativeElement;
+      const massage = this.selectedMassage();
+
+      if (!dialog) {
+        return;
       }
 
-      const hours = Math.floor(minutes / 60);
-      const remainingMinutes = minutes % 60;
+      if (massage && !dialog.open) {
+        dialog.showModal();
+      } else if (!massage && dialog.open) {
+        dialog.close();
+      }
+    });
+  }
 
-      return remainingMinutes === 0
-        ? `${hours}h`
-        : `${hours}h${remainingMinutes}`;
+  openDetails(massage: Massage): void {
+    // Cancels any previous request still in progress
+    this.detailsSubscription?.unsubscribe();
+
+    this.detailsError.set(null);
+    this.detailsLoading.set(true);
+
+    this.detailsSubscription = this.massageService
+      .getMassageBySlug(massage.slug)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (details) => {
+          this.detailsLoading.set(false);
+          this.selectedMassage.set(details);
+        },
+        error: () => {
+          this.detailsLoading.set(false);
+          this.detailsError.set(
+            'Impossible de charger les détails du massage.'
+          );
+        },
+      }
+    );
+  }
+
+  closeDetails(): void {
+    this.selectedMassage.set(null);
+  }
+
+  onDialogClose(): void {
+    this.selectedMassage.set(null);
+  }
+
+  formatDuration(minutes: number): string {
+    if (minutes < 60) {
+      return `${minutes} min`;
     }
 
-    formatBodyArea(bodyArea: string): string {
-      switch (bodyArea) {
-        case 'UPPER_OR_LOWER_BODY':
-          return 'Haut/bas du corps';
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
 
-        case 'FULL_BODY':
-          return 'Corps complet';
+    return remainingMinutes === 0
+      ? `${hours}h`
+      : `${hours}h${remainingMinutes}`;
+  }
 
-        default:
-          return '';
-      }
+  formatBodyArea(bodyArea: string): string {
+    switch (bodyArea) {
+      case 'UPPER_OR_LOWER_BODY':
+        return 'Haut/bas du corps';
+
+      case 'FULL_BODY':
+        return 'Corps complet';
+
+      default:
+        return '';
     }
   }
+
+  private parseDescription(description: string): MassageDescriptionSection[] {
+    const sections: MassageDescriptionSection[] = [];
+
+    const normalized = description.replace(/\r\n?/g, '\n');
+
+    // Each section begins with a Markdown heading (##).
+    const blocks = normalized.split(/(?=^##\s+)/m);
+
+    for (const block of blocks) {
+      const content = block.trim();
+
+      if (!content) {
+        continue;
+      }
+
+      const lines = content.split('\n');
+      const isHeading = /^##\s+/.test(lines[0]);
+
+      const title = isHeading
+        ? lines.shift()!.replace(/^##\s+/, '').trim()
+        : null;
+
+      const paragraphs = lines
+        .join('\n')
+        .split(/\n\s*\n/)
+        .map(paragraph => paragraph.trim())
+        .filter(Boolean);
+
+      if (title || paragraphs.length > 0) {
+        sections.push({ title, paragraphs });
+      }
+    }
+
+    return sections;
+  }
+}
