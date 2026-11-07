@@ -117,6 +117,7 @@ jobs:
             -o ServerAliveCountMax=10 \
             ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "
               cd ~/app && \
-              docker compose down --remove-orphans &&
-              docker compose up -d --build
+              docker compose build frontend &&
+              docker compose build backend &&
+              docker compose up -d --no-build --remove-orphans 
             "
