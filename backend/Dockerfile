@@ -1,7 +1,8 @@
 # ===============================
 # Étape 1 : Build de l'application
 # ===============================
-FROM eclipse-temurin:21-jdk AS build
+# Use a patched Java 21 JDK for the build stage
+FROM eclipse-temurin:21.0.13.1_2-jdk AS build
 
 # Build environment variable
 ENV DOCKER_BUILD=true
@@ -29,7 +30,8 @@ RUN ./gradlew bootJar --no-daemon
 # ===============================
 # Étape 2 : Image d'exécution
 # ===============================
-FROM eclipse-temurin:21-jre
+# Use a patched Java 21 runtime in production
+FROM eclipse-temurin:21.0.13.1_2-jre
 
 WORKDIR /app
 
